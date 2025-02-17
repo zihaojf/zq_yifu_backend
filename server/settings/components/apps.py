@@ -26,6 +26,7 @@ LOCAL_APPS: list[str] = [
     "users",  # 用户
     "oauth",  # 认证
     "files",  # 文件
+    "vehicle",  # 车辆
 ]
 
 INSTALLED_APPS: list[str] = (
