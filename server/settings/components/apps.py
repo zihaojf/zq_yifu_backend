@@ -27,6 +27,8 @@ LOCAL_APPS: list[str] = [
     "oauth",  # 认证
     "files",  # 文件
     "vehicle",  # 车辆
+    "move",  # 挪车记录
+    "notifications",  # 通知消息
 ]
 
 INSTALLED_APPS: list[str] = (
