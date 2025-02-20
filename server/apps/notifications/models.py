@@ -18,7 +18,20 @@ class Notifications(models.Model):
         verbose_name="接收者",
         related_name="receive_user",
     )
+
     send_time = models.DateTimeField(auto_now_add=True, verbose_name="发送时间")
+
+    READ_STATUS_CHOICES = [
+        ("unread", "Unread"),
+        ("read", "Read"),
+    ]
+    read_status = models.CharField(
+        choices=READ_STATUS_CHOICES,
+        blank=False,
+        default="unread",
+        max_length=10,
+        verbose_name="已读状态",
+    )
 
     class Meta:
         verbose_name = "消息"
