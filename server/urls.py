@@ -27,6 +27,7 @@ urlpatterns = [
     path("api/users/", include("users.urls")),  # 用户信息
     path("api/vehicle/", include("vehicle.urls")),  # 车辆信息
     path("api/notifications/", include("notifications.urls")),  # 消息通知
+    path("api/move/", include("move.urls")),
     path("files/", include("files.urls")),  # 文件
 ]
 

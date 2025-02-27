@@ -7,6 +7,7 @@ from .models import Notifications
 class NotificationsSerializer(serializers.ModelSerializer):
     message_type = serializers.SerializerMethodField()
     avatar = serializers.SerializerMethodField()
+    opposite_username = serializers.SerializerMethodField()
 
     send_user = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(),
@@ -67,6 +68,23 @@ class NotificationsSerializer(serializers.ModelSerializer):
                 if request
                 else opposite_user.avatar.url
             )
+        return None
+
+    def get_opposite_username(self, obj):
+        """获取对方用户昵称"""
+        current_user = self.context["request"].user
+        if current_user == obj.send_user:
+            opposite_user = obj.receive_user
+        elif current_user == obj.receive_user:
+            opposite_user = obj.send_user
+        else:
+            return None
+        if (
+            opposite_user
+            and hasattr(opposite_user, "nickname")
+            and opposite_user.nickname
+        ):
+            return opposite_user.nickname
         return None
 
 
